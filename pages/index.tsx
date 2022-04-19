@@ -1,68 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import {
-  forwardRef,
-  Box,
-  Flex,
-  Heading,
-  Text,
-  Code,
-  BoxProps,
-} from '@chakra-ui/react'
-
-interface CardProps extends BoxProps {
-  sign: string
-  href: string
-  title: string
-  description: string
-}
-
-const Card = forwardRef<CardProps, 'div'>((props, ref) => (
-  <Box
-    m="1rem"
-    p="1.5rem"
-    textAlign="left"
-    color="inherit"
-    ref={ref}
-    _hover={{
-      color: '#0070f3',
-      borderColor: '#0070f3',
-    }}
-    {...props}
-  >
-    <Heading as="h2" fontSize="1.5rem" mb="1rem">
-      {props.title} {props.sign}
-    </Heading>
-    <Text m={0} fontSize="1.25rem" lineHeight={1.5}>
-      {props.description}
-    </Text>
-  </Box>
-))
-
-const cards = [
-  {
-    href: 'https://nextjs.org/docs',
-    title: 'Documentation',
-    description: 'Find in-depth information about Next.js features and API.',
-  },
-  {
-    href: 'https://nextjs.org/learn',
-    title: 'Learn',
-    description: 'Learn about Next.js in an interactive course with quizzes!',
-  },
-  {
-    href: 'https://github.com/vercel/next.js/tree/canary/examples',
-    title: 'Examples',
-    description: 'Discover and deploy boilerplate example Next.js projects.',
-  },
-  {
-    href: 'https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app',
-    title: 'Deploy',
-    description:
-      'Instantly deploy your Next.js site to a public URL with Vercel.',
-  },
-]
+import { Box, Flex, Heading, Text, Code } from '@chakra-ui/react'
+import { Card, type CardProps } from 'components'
+import { cards } from 'data'
 
 const Home: NextPage = () => {
   return (
@@ -116,7 +57,7 @@ const Home: NextPage = () => {
           flexWrap="wrap"
           maxW="800px"
         >
-          {cards.map((props) => (
+          {cards.map((props: CardProps) => (
             <Card
               key={props.title}
               as="a"
